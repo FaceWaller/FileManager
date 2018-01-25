@@ -8,30 +8,68 @@
 
 #import "MainViewController.h"
 
-@interface MainViewController ()
-
+@interface MainViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,weak)UITableView * tableView;
+@property(nonatomic,strong)NSMutableArray * dataArry;
 @end
 
 @implementation MainViewController
 
+- (UITableView *)tableView{
+    if (!_tableView) {
+        UITableView * tableView = [[UITableView alloc]init];
+        tableView.dataSource = self;
+        tableView.delegate = self;
+        _tableView = tableView;
+        [self.view addSubview:tableView];
+    }
+    return _tableView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self initNav];
+    [self setUpUI];
+    [self initData];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)initData{
+    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSURL * docUrl = [NSURL fileURLWithPath:docDir];
+    NSFileManager * fm = [NSFileManager defaultManager];
+    NSArray * configArr = @[NSURLNameKey,NSURLIsDirectoryKey];
+    NSArray * fmArr = [fm contentsOfDirectoryAtURL:docUrl includingPropertiesForKeys:configArr options:NSDirectoryEnumerationSkipsSubdirectoryDescendants error:nil];
+    self.dataArry = [fmArr mutableCopy];
+    [self.tableView reloadData];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)setUpUI{
+    [self.tableView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
+    [self.tableView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0];
+    [self.tableView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0];
+    [self.tableView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0];
 }
-*/
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.dataArry.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:0 reuseIdentifier:@"cell"];
+    }
+    
+    NSURL * url = self.dataArry[indexPath.row];
+    NSString * str = [FileTool getUrlValue:url withResourceKey:NSURLNameKey];
+    
+    cell.textLabel.text = str;
+    
+    return cell;
+}
+
+- (void)initNav{
+    self.navigationItem.title = @"列表";
+}
 
 @end

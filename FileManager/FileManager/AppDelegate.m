@@ -15,11 +15,26 @@
 
 @implementation AppDelegate
 
+- (void)setNav
+{
+    UINavigationBar *bar = [UINavigationBar appearance];
+    //设置显示的颜色
+    bar.barTintColor = [UIColor colorWithRed:62/255.0 green:173/255.0 blue:176/255.0 alpha:1.0];
+//    bar.barTintColor = [UIColor hexChangeFloat:@"#3EADB0"];
+    //设置字体颜色
+    bar.tintColor = [UIColor whiteColor];
+    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    //或者用这个都行
+    //    [bar setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor whiteColor]}];
+    
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window=[[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
-    self.window.rootViewController=[[MainViewController alloc]init];
+    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:[[MainViewController alloc]init]];
+    self.window.rootViewController=nav;
+    [self setNav];
     return YES;
 }
 
