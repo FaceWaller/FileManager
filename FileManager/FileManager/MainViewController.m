@@ -7,10 +7,13 @@
 //
 
 #import "MainViewController.h"
+#import "FileBaseCell.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
-@interface MainViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface MainViewController ()<UITableViewDataSource,UITableViewDelegate,UIDocumentInteractionControllerDelegate>
 @property(nonatomic,weak)UITableView * tableView;
 @property(nonatomic,strong)NSMutableArray * dataArry;
+//@property(nonatomic,strong)UIDocumentInteractionController * docInteractionController;
 @end
 
 @implementation MainViewController
@@ -26,6 +29,14 @@
     return _tableView;
 }
 
+//- (UIDocumentInteractionController *)docInteractionController{
+//    if (!_docInteractionController) {
+//        _docInteractionController = [[UIDocumentInteractionController alloc]init];
+//        _docInteractionController.delegate = self;
+//    }
+//    return _docInteractionController;
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initNav];
@@ -33,6 +44,7 @@
     [self initData];
     
 }
+
 
 - (void)initData{
     NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
@@ -55,18 +67,52 @@
     return self.dataArry.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    FileBaseCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:0 reuseIdentifier:@"cell"];
+        cell = [[FileBaseCell alloc]initWithStyle:0 reuseIdentifier:@"cell"];
     }
-    
     NSURL * url = self.dataArry[indexPath.row];
-    NSString * str = [FileTool getUrlValue:url withResourceKey:NSURLNameKey];
+    cell.fileUrl = url;
     
-    cell.textLabel.text = str;
     
+    
+    
+//    self.docInteractionController.URL = url;
+//
+//    UIImageView * imageView1 = [[UIImageView alloc]initWithImage:self.docInteractionController.icons[0]];
+//    imageView1.frame = CGRectMake(0, 0, 100, 100);
+//    [cell.contentView addSubview:imageView1];
+//
+//    UIImageView * imageView2 = [[UIImageView alloc]initWithImage:self.docInteractionController.icons[1]];
+//    imageView2.frame = CGRectMake(100, 0, 100, 100);
+//    [cell.contentView addSubview:imageView2];
+    
+    
+
     return cell;
 }
+
+//-(NSString *)preferredUTIForExtention:(NSString *)ext
+//{
+//    //Request the UTI via the file extension
+//    NSString *theUTI = (__bridge_transfer NSString     *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)(fileExtension), NULL);
+//    return theUTI;
+//}
+
+//- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller{
+//
+//    return self;
+//}
+//
+//- (CGRect)documentInteractionControllerRectForPreview:(UIDocumentInteractionController *)controller{
+//
+//    return self.view.frame;
+//}
+//- (nullable UIView *)documentInteractionControllerViewForPreview:(UIDocumentInteractionController *)controller{
+//
+//    return self.view;
+//}
+
 
 - (void)initNav{
     self.navigationItem.title = @"列表";
