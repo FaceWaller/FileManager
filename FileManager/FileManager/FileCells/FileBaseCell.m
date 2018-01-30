@@ -16,6 +16,10 @@
     NSString * str = [FileTool getUrlValue:fileUrl withResourceKey:NSURLNameKey];
     self.textLabel.text = str;
     
+    NSString * filePath = [fileUrl path];
+    fileType type = [FileTool getFileTypeWithPath:filePath];
+//    NSLog(@"%ld",type);
+    
     
 }
 
