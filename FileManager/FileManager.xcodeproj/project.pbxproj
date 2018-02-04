@@ -13,6 +13,7 @@
 		E723FD86201A2CCF00F0F4CE /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E723FD85201A2CCF00F0F4CE /* MainViewController.m */; };
 		E723FD8A201A2E1300F0F4CE /* FileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E723FD89201A2E1300F0F4CE /* FileTool.m */; };
 		E723FD96201A337600F0F4CE /* UIColor+extend.m in Sources */ = {isa = PBXBuildFile; fileRef = E723FD95201A337600F0F4CE /* UIColor+extend.m */; };
+		E74D974720275A22006297AF /* ImageIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E74D974620275A22006297AF /* ImageIndexViewController.m */; };
 		E7543E362018E2100014400A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7543E352018E2100014400A /* AppDelegate.m */; };
 		E7543E3E2018E2100014400A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7543E3D2018E2100014400A /* Assets.xcassets */; };
 		E7543E412018E2100014400A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7543E3F2018E2100014400A /* LaunchScreen.storyboard */; };
@@ -54,6 +55,8 @@
 		E723FD8E201A304500F0F4CE /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		E723FD94201A337600F0F4CE /* UIColor+extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+extend.h"; sourceTree = "<group>"; };
 		E723FD95201A337600F0F4CE /* UIColor+extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+extend.m"; sourceTree = "<group>"; };
+		E74D974520275A22006297AF /* ImageIndexViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageIndexViewController.h; sourceTree = "<group>"; };
+		E74D974620275A22006297AF /* ImageIndexViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageIndexViewController.m; sourceTree = "<group>"; };
 		E7543E312018E2100014400A /* FileManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7543E342018E2100014400A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E7543E352018E2100014400A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -135,6 +138,15 @@
 			path = supportTool;
 			sourceTree = "<group>";
 		};
+		E74D9744202759B2006297AF /* LookUpVC */ = {
+			isa = PBXGroup;
+			children = (
+				E74D974520275A22006297AF /* ImageIndexViewController.h */,
+				E74D974620275A22006297AF /* ImageIndexViewController.m */,
+			);
+			path = LookUpVC;
+			sourceTree = "<group>";
+		};
 		E7543E282018E2100014400A = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				E796BD36201B5E8300ADB190 /* FileCells */,
+				E74D9744202759B2006297AF /* LookUpVC */,
 				E723FD87201A2DEF00F0F4CE /* supportTool */,
 				E7543E342018E2100014400A /* AppDelegate.h */,
 				E7543E352018E2100014400A /* AppDelegate.m */,
@@ -486,6 +499,7 @@
 				E7543E362018E2100014400A /* AppDelegate.m in Sources */,
 				E796BD39201B623800ADB190 /* FileBaseCell.m in Sources */,
 				E723FD86201A2CCF00F0F4CE /* MainViewController.m in Sources */,
+				E74D974720275A22006297AF /* ImageIndexViewController.m in Sources */,
 				E723FD8A201A2E1300F0F4CE /* FileTool.m in Sources */,
 				E723FD96201A337600F0F4CE /* UIColor+extend.m in Sources */,
 			);

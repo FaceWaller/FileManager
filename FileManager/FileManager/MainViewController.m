@@ -8,7 +8,7 @@
 
 #import "MainViewController.h"
 #import "FileBaseCell.h"
-#import <MobileCoreServices/MobileCoreServices.h>
+#import "ImageIndexViewController.h"
 
 @interface MainViewController ()<UITableViewDataSource,UITableViewDelegate,UIDocumentInteractionControllerDelegate>
 @property(nonatomic,weak)UITableView * tableView;
@@ -23,11 +23,16 @@
         tableView.dataSource = self;
         tableView.delegate = self;
         _tableView = tableView;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:tableView];
     }
     return _tableView;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,7 +48,7 @@
     NSURL * docUrl = [NSURL fileURLWithPath:docDir];
     NSFileManager * fm = [NSFileManager defaultManager];
     NSArray * configArr = @[NSURLNameKey,NSURLIsDirectoryKey];
-    NSArray * fmArr = [fm contentsOfDirectoryAtURL:docUrl includingPropertiesForKeys:configArr options:NSDirectoryEnumerationSkipsSubdirectoryDescendants error:nil];
+    NSArray * fmArr = [fm contentsOfDirectoryAtURL:docUrl includingPropertiesForKeys:configArr options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles error:nil];
     self.dataArry = [fmArr mutableCopy];
     [self.tableView reloadData];
 }
@@ -58,6 +63,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArry.count;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     FileBaseCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
@@ -68,6 +78,38 @@
     
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSURL * fileUrl = self.dataArry[indexPath.row];;
+    NSString * filePath = [fileUrl path];
+    FileType fileType = [FileTool getFileTypeWithPath:filePath];
+    switch (fileType) {
+        case NONETYPE: //不识别的类型
+            break;
+        case FOLDERTYPE: //文件夹类型
+            break;
+        case TEXTTYPE:   //文本类型
+            break;
+        case IMAGETYPE:  //图片类型
+            [self lookUpImageWithUrl:fileUrl];
+            break;
+        case AUDIOTYPE:  //音频类型
+            break;
+        case MOVIETYPE:  //视频类型
+            break;
+        case PDFTYPE:    //PDF类型
+            break;
+        default:
+            break;
+    }
+
+}
+
+- (void)lookUpImageWithUrl:(NSURL *)imageUrl{
+    ImageIndexViewController * imageVC = [[ImageIndexViewController alloc]init];
+    imageVC.imageUrl = imageUrl;
+    [self.navigationController pushViewController:imageVC animated:YES];
 }
 
 

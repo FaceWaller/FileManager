@@ -18,16 +18,21 @@
     return value;
 }
 
-+ (fileType)getFileTypeWithPath:(NSString *)path{
-    
-    if (![path pathExtension]) return FOLDERTYPE; //文件夹类型
++ (FileType)getFileTypeWithPath:(NSString *)path{
+    /*文件夹判断不准 需要用url判断*/
+    if (pathPointsToLikelyFolder(path)) return FOLDERTYPE; //文件夹类型
     if (pathPointsToLikelyTxt(path)) return TEXTTYPE; //文本类型
     if (pathPointsToLikelyImage(path)) return IMAGETYPE; //图片类型
     if (pathPointsToLikelyAudio(path)) return AUDIOTYPE; //音频类型
     if (pathPointsToLikelyMovie(path))  return MOVIETYPE; //视频类型
+    if (pathPointsToLikelyPdf(path)) return PDFTYPE; //PDF类型
     return NONETYPE;  //不可识别的类型
 }
 
+BOOL pathPointsToLikelyFolder(NSString *path)
+{
+    return pathPointsToLikelyUTIMatch(path, CFSTR("dyn.age8u"));
+}
 BOOL pathPointsToLikelyTxt(NSString *path)
 {
     return pathPointsToLikelyUTIMatch(path, CFSTR("public.text"));
@@ -43,6 +48,10 @@ BOOL pathPointsToLikelyAudio(NSString *path)
 BOOL pathPointsToLikelyMovie(NSString *path)
 {
     return pathPointsToLikelyUTIMatch(path, CFSTR("public.movie"));
+}
+BOOL pathPointsToLikelyPdf(NSString *path)
+{
+    return pathPointsToLikelyUTIMatch(path, CFSTR("com.adobe.pdf"));
 }
 
 
@@ -62,24 +71,12 @@ NSString *preferredUTIForExtension(NSString *ext)
     return theUTI;
 }
 
-/*
-public.zip-archive  压缩文件
-"public.zip-archive",
-"com.pkware.zip-archive",
-"public.data",
-"public.item",
-"public.archive"
-
-com.adobe.pdf pdf文件
-
-"com.adobe.pdf",
-"public.data",
-"public.item",
-"public.composite-content",
-"public.content"
-*/
-
-//UTTypeCreateAllIdentifiersForTag
++ (id)getThumbnailWithUrl:(NSURL *)imageUrl{ //获取图片缩略图
+    
+    NSData * imageData = [NSData dataWithContentsOfURL:imageUrl];
+    UIImage * image = [UIImage imageWithData:imageData];
+    return image;
+}
 
 
 @end
