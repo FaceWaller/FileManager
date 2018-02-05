@@ -17,6 +17,7 @@
 - (UIImageView *)indexImageView{
     if (!_indexImageView) {
         UIImageView * indexImageView = [[UIImageView alloc]init];
+        indexImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.view addSubview:indexImageView];
         _indexImageView = indexImageView;
 
@@ -31,6 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor blackColor];
     [self setUpUI];
     
     NSData * data = [NSData dataWithContentsOfURL:self.imageUrl];
