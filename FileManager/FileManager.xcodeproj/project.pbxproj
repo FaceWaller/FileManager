@@ -21,6 +21,7 @@
 		E7543E4E2018E2100014400A /* FileManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7543E4D2018E2100014400A /* FileManagerTests.m */; };
 		E7543E592018E2100014400A /* FileManagerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7543E582018E2100014400A /* FileManagerUITests.m */; };
 		E796BD39201B623800ADB190 /* FileBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E796BD38201B623800ADB190 /* FileBaseCell.m */; };
+		E79D41452028A49200FD6C80 /* AudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79D41442028A49200FD6C80 /* AudioViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		E7543E5A2018E2100014400A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E796BD37201B623800ADB190 /* FileBaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileBaseCell.h; sourceTree = "<group>"; };
 		E796BD38201B623800ADB190 /* FileBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileBaseCell.m; sourceTree = "<group>"; };
+		E79D41432028A49200FD6C80 /* AudioViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioViewController.h; sourceTree = "<group>"; };
+		E79D41442028A49200FD6C80 /* AudioViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioViewController.m; sourceTree = "<group>"; };
 		E9D3EB90AC27751C9D652023 /* libPods-FileManagerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FileManagerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F637063E97123356615EF886 /* libPods-FileManagerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FileManagerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -143,6 +146,8 @@
 			children = (
 				E74D974520275A22006297AF /* ImageIndexViewController.h */,
 				E74D974620275A22006297AF /* ImageIndexViewController.m */,
+				E79D41432028A49200FD6C80 /* AudioViewController.h */,
+				E79D41442028A49200FD6C80 /* AudioViewController.m */,
 			);
 			path = LookUpVC;
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 			files = (
 				E7543E442018E2100014400A /* main.m in Sources */,
 				E7543E362018E2100014400A /* AppDelegate.m in Sources */,
+				E79D41452028A49200FD6C80 /* AudioViewController.m in Sources */,
 				E796BD39201B623800ADB190 /* FileBaseCell.m in Sources */,
 				E723FD86201A2CCF00F0F4CE /* MainViewController.m in Sources */,
 				E74D974720275A22006297AF /* ImageIndexViewController.m in Sources */,

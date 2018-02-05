@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "FileBaseCell.h"
 #import "ImageIndexViewController.h"
+#import "AudioViewController.h"
 
 @interface MainViewController ()<UITableViewDataSource,UITableViewDelegate,UIDocumentInteractionControllerDelegate>
 @property(nonatomic,weak)UITableView * tableView;
@@ -44,11 +45,15 @@
 
 
 - (void)initData{
-    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSURL * docUrl = [NSURL fileURLWithPath:docDir];
+    if (!self.folderUrl) {
+        NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+        self.folderUrl = [NSURL fileURLWithPath:docDir];
+    }
+
+    
     NSFileManager * fm = [NSFileManager defaultManager];
     NSArray * configArr = @[NSURLNameKey,NSURLIsDirectoryKey];
-    NSArray * fmArr = [fm contentsOfDirectoryAtURL:docUrl includingPropertiesForKeys:configArr options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles error:nil];
+    NSArray * fmArr = [fm contentsOfDirectoryAtURL:self.folderUrl includingPropertiesForKeys:configArr options:NSDirectoryEnumerationSkipsSubdirectoryDescendants | NSDirectoryEnumerationSkipsHiddenFiles error:nil];
     self.dataArry = [fmArr mutableCopy];
     [self.tableView reloadData];
 }
@@ -88,6 +93,7 @@
         case NONETYPE: //不识别的类型
             break;
         case FOLDERTYPE: //文件夹类型
+            [self gotoChildFolderWithUrl:fileUrl];
             break;
         case TEXTTYPE:   //文本类型
             break;
@@ -95,6 +101,7 @@
             [self lookUpImageWithUrl:fileUrl];
             break;
         case AUDIOTYPE:  //音频类型
+            [self playAudioWithUrlWithUrl:fileUrl];
             break;
         case MOVIETYPE:  //视频类型
             break;
@@ -112,10 +119,29 @@
     [self.navigationController pushViewController:imageVC animated:YES];
 }
 
+- (void)playAudioWithUrlWithUrl:(NSURL *)audioUrl{
+    AudioViewController * audioVC = [[AudioViewController alloc]init];
+    audioVC.audioUrl = audioUrl;
+    [self.navigationController pushViewController:audioVC animated:YES];
+}
+
+- (void)gotoChildFolderWithUrl:(NSURL *)folderurl{
+    NSString * folderName = [FileTool getUrlValue:folderurl withResourceKey:NSURLNameKey];
+    MainViewController * childFolderVC = [[MainViewController alloc]init];
+    childFolderVC.folderUrl = folderurl;
+    childFolderVC.folderName = folderName;
+    [self.navigationController pushViewController:childFolderVC animated:YES];
+}
+
 
 
 - (void)initNav{
-    self.navigationItem.title = @"列表";
+    if (!self.folderName) {
+        self.navigationItem.title = @"列表";
+    }else{
+        self.navigationItem.title = self.folderName;
+    }
+    
 }
 
 @end
