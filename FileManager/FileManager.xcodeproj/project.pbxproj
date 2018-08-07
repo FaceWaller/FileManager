@@ -13,7 +13,9 @@
 		E723FD86201A2CCF00F0F4CE /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E723FD85201A2CCF00F0F4CE /* MainViewController.m */; };
 		E723FD8A201A2E1300F0F4CE /* FileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E723FD89201A2E1300F0F4CE /* FileTool.m */; };
 		E723FD96201A337600F0F4CE /* UIColor+extend.m in Sources */ = {isa = PBXBuildFile; fileRef = E723FD95201A337600F0F4CE /* UIColor+extend.m */; };
-		E74D974720275A22006297AF /* ImageIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E74D974620275A22006297AF /* ImageIndexViewController.m */; };
+		E73D1BE521194BE700A6A68A /* TxtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73D1BE421194BE700A6A68A /* TxtViewController.m */; };
+		E73D1BE821194C8A00A6A68A /* BaseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73D1BE721194C8A00A6A68A /* BaseDetailViewController.m */; };
+		E73D1BEB21194CF700A6A68A /* ImageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73D1BEA21194CF700A6A68A /* ImageDetailViewController.m */; };
 		E7543E362018E2100014400A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7543E352018E2100014400A /* AppDelegate.m */; };
 		E7543E3E2018E2100014400A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7543E3D2018E2100014400A /* Assets.xcassets */; };
 		E7543E412018E2100014400A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7543E3F2018E2100014400A /* LaunchScreen.storyboard */; };
@@ -56,8 +58,12 @@
 		E723FD8E201A304500F0F4CE /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		E723FD94201A337600F0F4CE /* UIColor+extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+extend.h"; sourceTree = "<group>"; };
 		E723FD95201A337600F0F4CE /* UIColor+extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+extend.m"; sourceTree = "<group>"; };
-		E74D974520275A22006297AF /* ImageIndexViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageIndexViewController.h; sourceTree = "<group>"; };
-		E74D974620275A22006297AF /* ImageIndexViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageIndexViewController.m; sourceTree = "<group>"; };
+		E73D1BE321194BE700A6A68A /* TxtViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TxtViewController.h; sourceTree = "<group>"; };
+		E73D1BE421194BE700A6A68A /* TxtViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TxtViewController.m; sourceTree = "<group>"; };
+		E73D1BE621194C8A00A6A68A /* BaseDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseDetailViewController.h; sourceTree = "<group>"; };
+		E73D1BE721194C8A00A6A68A /* BaseDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseDetailViewController.m; sourceTree = "<group>"; };
+		E73D1BE921194CF700A6A68A /* ImageDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageDetailViewController.h; sourceTree = "<group>"; };
+		E73D1BEA21194CF700A6A68A /* ImageDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageDetailViewController.m; sourceTree = "<group>"; };
 		E7543E312018E2100014400A /* FileManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7543E342018E2100014400A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E7543E352018E2100014400A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -144,8 +150,12 @@
 		E74D9744202759B2006297AF /* LookUpVC */ = {
 			isa = PBXGroup;
 			children = (
-				E74D974520275A22006297AF /* ImageIndexViewController.h */,
-				E74D974620275A22006297AF /* ImageIndexViewController.m */,
+				E73D1BE621194C8A00A6A68A /* BaseDetailViewController.h */,
+				E73D1BE721194C8A00A6A68A /* BaseDetailViewController.m */,
+				E73D1BE921194CF700A6A68A /* ImageDetailViewController.h */,
+				E73D1BEA21194CF700A6A68A /* ImageDetailViewController.m */,
+				E73D1BE321194BE700A6A68A /* TxtViewController.h */,
+				E73D1BE421194BE700A6A68A /* TxtViewController.m */,
 				E79D41432028A49200FD6C80 /* AudioViewController.h */,
 				E79D41442028A49200FD6C80 /* AudioViewController.m */,
 			);
@@ -500,14 +510,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E73D1BE821194C8A00A6A68A /* BaseDetailViewController.m in Sources */,
 				E7543E442018E2100014400A /* main.m in Sources */,
 				E7543E362018E2100014400A /* AppDelegate.m in Sources */,
 				E79D41452028A49200FD6C80 /* AudioViewController.m in Sources */,
 				E796BD39201B623800ADB190 /* FileBaseCell.m in Sources */,
+				E73D1BEB21194CF700A6A68A /* ImageDetailViewController.m in Sources */,
 				E723FD86201A2CCF00F0F4CE /* MainViewController.m in Sources */,
-				E74D974720275A22006297AF /* ImageIndexViewController.m in Sources */,
 				E723FD8A201A2E1300F0F4CE /* FileTool.m in Sources */,
 				E723FD96201A337600F0F4CE /* UIColor+extend.m in Sources */,
+				E73D1BE521194BE700A6A68A /* TxtViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +676,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 76G9V6496L;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = FileManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -680,6 +693,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 76G9V6496L;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = FileManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

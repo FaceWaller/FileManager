@@ -8,8 +8,9 @@
 
 #import "MainViewController.h"
 #import "FileBaseCell.h"
-#import "ImageIndexViewController.h"
+#import "ImageDetailViewController.h"
 #import "AudioViewController.h"
+#import "TxtViewController.h"
 
 @interface MainViewController ()<UITableViewDataSource,UITableViewDelegate,UIDocumentInteractionControllerDelegate>
 @property(nonatomic,weak)UITableView * tableView;
@@ -96,6 +97,7 @@
             [self gotoChildFolderWithUrl:fileUrl];
             break;
         case TEXTTYPE:   //文本类型
+            [self gotoTxtWithUrl:fileUrl];
             break;
         case IMAGETYPE:  //图片类型
             [self lookUpImageWithUrl:fileUrl];
@@ -106,17 +108,23 @@
         case MOVIETYPE:  //视频类型
             break;
         case PDFTYPE:    //PDF类型
+            DLog(@"PDF类型");
             break;
         default:
             break;
     }
 
 }
+- (void)gotoTxtWithUrl:(NSURL *)txtUrl{
+    TxtViewController * VC = [[TxtViewController alloc]init];
+    VC.fileUrl = txtUrl;
+    [self.navigationController pushViewController:VC animated:YES];
+}
 
 - (void)lookUpImageWithUrl:(NSURL *)imageUrl{
-    ImageIndexViewController * imageVC = [[ImageIndexViewController alloc]init];
-    imageVC.imageUrl = imageUrl;
-    [self.navigationController pushViewController:imageVC animated:YES];
+    ImageDetailViewController * VC = [[ImageDetailViewController alloc]init];
+    VC.fileUrl = imageUrl;
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 - (void)playAudioWithUrlWithUrl:(NSURL *)audioUrl{
@@ -137,7 +145,7 @@
 
 - (void)initNav{
     if (!self.folderName) {
-        self.navigationItem.title = @"列表";
+        self.navigationItem.title = @"文件列表";
     }else{
         self.navigationItem.title = self.folderName;
     }
